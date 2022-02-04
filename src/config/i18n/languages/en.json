@@ -1,0 +1,31 @@
+{
+  "feature_flag": {
+    "panels": {
+      "general": {
+        "title": "general",
+        "case_management": "case management",
+        "map_timeline": "map timeline",
+        "views_briefings": "views briefings",
+        "notifications": "notifications",
+        "mass_communications": "mass communications",
+        "traffic_cameras": "traffic cameras"
+      },
+      "user_settings": {
+        "title": "settings",
+        "audit_log": "audit log",
+        "users": {
+          "title": "users",
+          "add": "users add",
+          "update": "users edit",
+          "delete": "user delete",
+          "max_users": "max users"
+        }
+      },
+      "alerts": {
+        "title": "alerts",
+        "alert_manager": "alert manager",
+        "alert_rules": "alert rules"
+      }
+    }
+  }
+}

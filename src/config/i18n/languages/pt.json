@@ -1,0 +1,31 @@
+{
+  "feature_flag": {
+    "panels": {
+      "general": {
+        "title": "geral",
+        "case_management": "gestão de caso",
+        "map_timeline": "linha do tempo do mapa",
+        "views_briefings": "visualizações de briefings",
+        "notifications": "notificações",
+        "mass_communications": "comunicação em massa",
+        "traffic_cameras": "câmeras de trânsito"
+      },
+      "user_settings": {
+        "title": "configurações",
+        "audit_log": "registro de auditoria",
+        "users": {
+          "title": "usuários",
+          "add": "adiciona usuários",
+          "update": "edita usuários",
+          "delete": "deleta usuários",
+          "max_users": "máx usuários"
+        }
+      },
+      "alerts": {
+        "title": "alertas",
+        "alert_manager": "alert manager",
+        "alert_rules": "alert rules"
+      }
+    }
+  }
+}
