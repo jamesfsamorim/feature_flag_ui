@@ -1,18 +1,16 @@
 import React from "react";
 import {
-    Accordion,
     AccordionDetails,
     AccordionSummary,
     List,
-    ListItemText,
     Switch
 } from "@mui/material";
-import {ExpandMore} from "@mui/icons-material";
 import {StandardSwitchProps, SwitchProps} from "./Standard.switch";
 import {useTranslation} from "react-i18next";
 import ListItemSwitchFactory, {ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
+import {AccordionSwitch, ExpandMoreIcon, Title} from './Switch.styled'
 
-interface ChildrenGroupSwitchProps extends SwitchProps {
+export interface ChildrenGroupSwitchProps extends SwitchProps {
     children: ListItemSwitchProps[]
 }
 
@@ -31,23 +29,27 @@ const GroupSwitch = ({title, switchProps: {name, checked, onChange, children}}: 
         };
 
     return (
-        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} >
+        <AccordionSwitch expanded={expanded === 'panel1'} onChange={handleChange('panel1')} square>
             <AccordionSummary
-                expandIcon={<ExpandMore sx={{color: 'white'}}/>}
+                expandIcon={<ExpandMoreIcon/>}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
             >
-                <ListItemText>{t(title)}</ListItemText>
+                <Title>
+                    <h6>{t(title)}</h6>
+                </Title>
                 <Switch edge="end" onChange={onChange} checked={checked} name={name}/>
             </AccordionSummary>
             <AccordionDetails>
                 <List>
-                    {children.map( (switchProps) =>
-                        ListItemSwitchFactory(switchProps)
+                    {children.map( (item: ListItemSwitchProps, index) =>
+                        <React.Fragment key={`${item.switchProps.name}-${index}`}>
+                            {ListItemSwitchFactory(item)}
+                        </React.Fragment>
                     )}
                 </List>
             </AccordionDetails>
-        </Accordion>
+        </AccordionSwitch>
     )
 }
 export default GroupSwitch

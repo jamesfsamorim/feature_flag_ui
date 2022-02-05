@@ -1,10 +1,10 @@
 import {ThemeProps} from "./Types.theme";
 
-const defaultTheme: ThemeProps = {
+const blueTheme: ThemeProps = {
     colors: {
-        primary: '#1b1c20',
-        secondary:'#282d30',
-        background: '#0d0d0f',
+        primary: '#012b47',
+        secondary:'#173447',
+        background: '#035a94',
         text: '#ffffff',
     },
     paddings: {
@@ -24,4 +24,4 @@ const defaultTheme: ThemeProps = {
     }
 }
 
-export default defaultTheme
+export default blueTheme

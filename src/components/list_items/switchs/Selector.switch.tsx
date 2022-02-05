@@ -1,7 +1,8 @@
-import {ListItem, ListItemText, MenuItem, Select, Switch} from "@mui/material";
+import {ListItem, MenuItem, Switch} from "@mui/material";
 import React from "react";
 import {StandardSwitchProps, SwitchProps} from "./Standard.switch";
 import {useTranslation} from "react-i18next";
+import {Selector, Title} from './Switch.styled'
 
 interface OptionsSelectorSwitchProps extends SwitchProps {
     options: SelectorOptionItem[]
@@ -21,12 +22,14 @@ const SelectorSwitch = ({title, switchProps: {onChange, checked, name, options}}
 
     return (
         <ListItem>
-            <ListItemText>{t(title)}</ListItemText>
-            <Select value={options[0]} >
-                {options.map( (option: SelectorOptionItem) =>
-                    <MenuItem value={option.value}>{option.title}</MenuItem>
+            <Title>
+                <h6>{t(title)}</h6>
+            </Title>
+            <Selector value={options[0].value} >
+                {options.map( (option: SelectorOptionItem, index) =>
+                    <MenuItem key={`option-${index}`} value={option.value}>{option.title}</MenuItem>
                 )}
-            </Select>
+            </Selector>
 
             <Switch edge="end" onChange={onChange} checked={checked} name={name}/>
         </ListItem>

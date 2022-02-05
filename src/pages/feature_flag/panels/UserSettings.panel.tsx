@@ -1,68 +1,25 @@
-import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary, Grid,
-    List,
-    ListItem,
-    ListItemText, MenuItem,
-    Select,
-    Switch, Typography
-} from "@mui/material";
-import {ExpandMore} from "@mui/icons-material";
+import { Grid } from "@mui/material";
 import React from "react";
+import {FeatureFlagList, FeatureFlagPaper, FeatureFlagTitle} from "../FeatureFlag.styled";
+import ListItemSwitchFactory, {ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
+import {useTranslation} from "react-i18next";
+import {userSettingsContent} from "./contents/UserSettings.content";
 
 const UserSettingsPanel = () => {
-    const [expanded, setExpanded] = React.useState<string | false>(false);
-
-    const handleChange =
-        (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-            setExpanded(isExpanded ? panel : false);
-        };
+    const {t} = useTranslation()
 
     return (
-        <Grid container md={4} direction="column" align-items="center">
-            <Typography component='h5' style={{color: 'white'}}>settings</Typography>
-            <List sx={{bgcolor: '#1b1c20'}}>
-                <ListItem>
-                    <ListItemText sx={{color: 'white'}}>audit log</ListItemText>
-                    <Switch edge="end" color='primary'/>
-                </ListItem>
-                <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} sx={{bgcolor: '#1b1c20'}}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMore sx={{color: 'white'}}/>}
-                        aria-controls="panel2bh-content"
-                        id="panel2bh-header"
-                    >
-                        <ListItemText sx={{color: 'white'}}>users</ListItemText>
-                        <Switch edge="end" color='primary'/>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <List sx={{bgcolor: '#1b1c20'}}>
-                            <ListItem>
-                                <ListItemText sx={{color: 'white'}}>users add</ListItemText>
-                                <Switch edge="end" color='primary'/>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText sx={{color: 'white'}}>user delete</ListItemText>
-                                <Switch edge="end" color='primary'/>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText sx={{color: 'white'}}>users edit</ListItemText>
-                                <Switch edge="end" color='primary'/>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText sx={{color: 'white'}}>max users</ListItemText>
-                                <Select value={10} sx={{color: 'white'}}>
-                                    <MenuItem value={10}>10</MenuItem>
-                                    <MenuItem value={15}>15</MenuItem>
-                                    <MenuItem value={20}>20</MenuItem>
-                                </Select>
-                                <Switch edge="end" color='primary'/>
-                            </ListItem>
-                        </List>
-                    </AccordionDetails>
-                </Accordion>
-            </List>
+        <Grid item md={3.88} align-items="center">
+            <FeatureFlagTitle>
+                <h5>{t('feature_flag.panels.user_settings.title')}</h5>
+            </FeatureFlagTitle>
+            <FeatureFlagList>
+                {userSettingsContent.map((content, index) =>
+                    <FeatureFlagPaper key={`${content.switchProps.name}-${index}`}>
+                        {ListItemSwitchFactory(content as unknown as ListItemSwitchProps)}
+                    </FeatureFlagPaper>
+                )}
+            </FeatureFlagList>
         </Grid>
     )
 }

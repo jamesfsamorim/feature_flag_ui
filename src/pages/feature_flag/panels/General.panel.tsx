@@ -1,11 +1,13 @@
-import {Grid, List, Typography} from "@mui/material";
+import {Grid} from "@mui/material";
 import React, {ChangeEvent, useState} from "react";
 import {generalContent} from "./contents/General.content";
-import ListItemSwitchFactory, {SwitchTypes} from "../../../factories/ListItemSwitch.factory";
+import ListItemSwitchFactory, {ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
 import {useTranslation} from "react-i18next";
+import {FeatureFlagListAlternative} from "../FeatureFlag.styled";
 
 export interface GeneralPanelChecked {
     [index: string]: boolean
+
     case_management: boolean
     map_timeline: boolean
     views_briefings: boolean
@@ -35,21 +37,20 @@ const GeneralPanel: React.FC<GeneralPanelProps> = ({checked}) => {
 
     return (
         <>
-            <Typography component='h5' style={{color: 'white'}}>{t('feature_flag.panels.general.title')}</Typography>
+            <h5>{t('feature_flag.panels.general.title')}</h5>
             <Grid container spacing={2} columns={{md: 12}}>
                 {generalContent.map((content, index) =>
                     <Grid item md={4} key={`${content.switchProps.name}-${index}`}>
-                        <List sx={{bgcolor: '#1b1c20'}}>
+                        <FeatureFlagListAlternative>
                             {ListItemSwitchFactory({
-                                type: content.switchProps.type as SwitchTypes,
-                                title: content.title,
+                                ...content as ListItemSwitchProps,
                                 switchProps: {
                                     ...content.switchProps,
                                     checked: generalState[content.switchProps.name],
                                     onChange,
                                 }
                             })}
-                        </List>
+                        </FeatureFlagListAlternative>
                     </Grid>
                 )}
             </Grid>

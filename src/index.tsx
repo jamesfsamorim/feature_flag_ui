@@ -5,6 +5,8 @@ import {I18nextProvider} from "react-i18next";
 import i18n from './config/i18n/I18n'
 import {ThemeProvider} from "styled-components";
 import defaultTheme from "./themes/Default.theme";
+import lightTheme from "./themes/Light.theme";
+import blueTheme from "./themes/Blue.theme";
 import GlobalStyle from "./themes/global"
 
 ReactDOM.render(

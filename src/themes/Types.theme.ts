@@ -5,11 +5,19 @@ interface PaletteColors {
     text: string
 }
 
-interface PaddingSizes {
+interface Sizes {
+    small: string
     default: string
+}
+
+interface FontProps {
+    family: string
+    sizes: Sizes
+    weight: Sizes
 }
 
 export interface ThemeProps {
     colors: PaletteColors
-    padding: PaddingSizes
+    paddings: Sizes
+    fonts: FontProps
 }

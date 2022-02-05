@@ -6,16 +6,18 @@ import AppComponent from "./App.styled";
 import {GeneralPanelChecked} from "./pages/feature_flag/panels/General.panel";
 const HocFeatureFlag = withLoading(FeatureFlag)
 
+const emptyGeneralStatus: GeneralPanelChecked = {
+    case_management: false,
+    map_timeline: false,
+    mass_communications: true,
+    notifications: false,
+    traffic_cameras: true,
+    views_briefings: false,
+}
+
 function App() {
     const [loading, setLoading] = useState(false)
-    const [generalStatus, setGeneralStatus] = useState({
-        case_management: false,
-        map_timeline: false,
-        mass_communications: true,
-        notifications: false,
-        traffic_cameras: true,
-        views_briefings: false,
-    } as GeneralPanelChecked)
+    const [generalStatus, setGeneralStatus] = useState(emptyGeneralStatus)
 
     useEffect(() => {
 

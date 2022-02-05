@@ -1,6 +1,7 @@
-import {ListItem, ListItemText, Switch} from "@mui/material";
+import {ListItem, Switch} from "@mui/material";
 import React, {ChangeEvent} from "react";
 import {useTranslation} from "react-i18next";
+import {Title} from './Switch.styled'
 
 export interface SwitchProps {
     name: string
@@ -18,9 +19,9 @@ const StandardSwitch = ({title, switchProps: {onChange, checked, name}}: Standar
 
     return (
         <ListItem>
-            <ListItemText sx={{color: 'white'}}>
-                {t(title)}
-            </ListItemText>
+            <Title>
+                <h6>{t(title)}</h6>
+            </Title>
 
             <Switch edge="end" onChange={onChange} checked={checked} name={name}/>
         </ListItem>

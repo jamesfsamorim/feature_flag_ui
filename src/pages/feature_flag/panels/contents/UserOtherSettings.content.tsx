@@ -1,42 +1,42 @@
 export const userOtherSettingsContent = [
     {
         title: "feature_flag.panels.user_settings.audit_log",
+        type: 'standard',
         switchProps: {
-            type: 'standard',
             name: "other_user_audit_log"
         }
     },
     {
         title: "feature_flag.panels.user_settings.users.title",
+        type: 'group',
         switchProps: {
-            type: 'group',
             name: "users",
             children: [
                 {
                     title: "feature_flag.panels.user_settings.users.add",
+                    type: 'standard',
                     switchProps: {
-                        type: 'standard',
                         name: "user_add"
                     }
                 },
                 {
                     title: "feature_flag.panels.user_settings.users.update",
+                    type: 'standard',
                     switchProps: {
-                        type: 'standard',
                         name: "user_update"
                     }
                 },
                 {
                     title: "feature_flag.panels.user_settings.users.delete",
+                    type: 'standard',
                     switchProps: {
-                        type: 'standard',
                         name: "user_delete"
                     }
                 },
                 {
                     title: "feature_flag.panels.user_settings.users.max_users",
+                    type: 'selector',
                     switchProps: {
-                        type: 'selector',
                         name: "user_max_users",
                         options: [
                             {

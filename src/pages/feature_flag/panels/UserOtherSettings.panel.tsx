@@ -1,27 +1,25 @@
-import {
-    Grid,
-    List,
-    ListItem,
-    ListItemText,
-    Switch,
-    Typography
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {userOtherSettingsContent} from "./contents/UserOtherSettings.content";
-import ListItemSwitchFactory from "../../../factories/ListItemSwitch.factory";
+import ListItemSwitchFactory, {ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
+import {FeatureFlagList, FeatureFlagPaper, FeatureFlagTitle} from "../FeatureFlag.styled";
 
 const UserOtherSettingsPanel = () => {
     const {t} = useTranslation()
 
     return (
-        <Grid container md={4} direction="column" align-items="center">
-            <Typography component='h5' style={{color: 'white'}}>{t('feature_flag.panels.user_settings.title')}</Typography>
-            <List>
-                {userOtherSettingsContent.map( content =>
-                    ListItemSwitchFactory(content)
+        <Grid item md={3.88} align-items="center">
+            <FeatureFlagTitle>
+                <h5>{t('feature_flag.panels.user_settings.title')}</h5>
+            </FeatureFlagTitle>
+            <FeatureFlagList>
+                {userOtherSettingsContent.map((content, index) =>
+                    <FeatureFlagPaper key={`${content.switchProps.name}-${index}`}>
+                        {ListItemSwitchFactory(content as unknown as ListItemSwitchProps)}
+                    </FeatureFlagPaper>
                 )}
-            </List>
+            </FeatureFlagList>
         </Grid>
     )
 }

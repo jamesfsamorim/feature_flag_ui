@@ -1,26 +1,30 @@
 export const alertsContent = [
     {
-        "title": "case management",
-        "name": "case_management"
+        title: "feature_flag.panels.alerts.alert_manager",
+        type: 'standard',
+        switchProps: {
+            name: "user_delete"
+        }
     },
     {
-        "title": "map timeline",
-        "name": "map_timeline"
+        title: "feature_flag.panels.alerts.alert_rules",
+        type: 'selector',
+        switchProps: {
+            name: "alert_rules",
+            options: [
+                {
+                    title: "10",
+                    value: 10,
+                },
+                {
+                    title: "15",
+                    value: 15,
+                },
+                {
+                    title: "20",
+                    value: 20,
+                },
+            ]
+        }
     },
-    {
-        "title": "views briefings",
-        "name": "views_briefings"
-    },
-    {
-        "title": "notifications",
-        "name": "notifications"
-    },
-    {
-        "title": "mass communications",
-        "name": "mass_communications"
-    },
-    {
-        "title": "traffic cameras",
-        "name": "traffic_cameras"
-    }
 ]

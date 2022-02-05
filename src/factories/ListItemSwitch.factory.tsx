@@ -2,7 +2,7 @@ import React from "react";
 import SelectorSwitch, {
     SelectorOptionItem,
 } from "../components/list_items/switchs/Selector.switch";
-import GroupSwitch, {GroupSwitchProps} from "../components/list_items/switchs/Group.switch";
+import GroupSwitch from "../components/list_items/switchs/Group.switch";
 import StandardSwitch, {StandardSwitchProps, SwitchProps} from "../components/list_items/switchs/Standard.switch";
 
 export enum SwitchTypes {
@@ -12,8 +12,8 @@ export enum SwitchTypes {
 }
 
 interface OptionsAndChildrenSwitchProps extends SwitchProps {
-    options: SelectorOptionItem[],
-    children: ListItemSwitchProps[]
+    options?: SelectorOptionItem[],
+    children?: ListItemSwitchProps[]
 }
 
 export interface ListItemSwitchProps extends StandardSwitchProps {
@@ -21,20 +21,20 @@ export interface ListItemSwitchProps extends StandardSwitchProps {
     switchProps: OptionsAndChildrenSwitchProps
 }
 
-const ListItemSwitchFactory = ({type, title, switchProps}: ListItemSwitchProps) => {
-    const switchComponents = {
-        [SwitchTypes.STANDARD]: StandardSwitch,
-        [SwitchTypes.GROUP]: GroupSwitch,
-        [SwitchTypes.SELECTOR]: SelectorSwitch,
-    }
+const switchComponents = {
+    [SwitchTypes.STANDARD]: StandardSwitch,
+    [SwitchTypes.GROUP]: GroupSwitch,
+    [SwitchTypes.SELECTOR]: SelectorSwitch,
+}
 
-    if (typeof switchComponents[type] !== "undefined") {
+const ListItemSwitchFactory = ({type, title, switchProps}: ListItemSwitchProps) => {
+    if (typeof switchComponents[type] === "undefined") {
         throw new Error(`Switch component of type ${type} it does not implemented yet`)
     }
-
     const SwitchComponent = switchComponents[type]
 
-    return <SwitchComponent title={title} switchProps={switchProps}/>
+    const props = switchProps as typeof SwitchComponent.arguments["switchProps"]
+    return <SwitchComponent title={title} switchProps={props}/>
 }
 
 export default ListItemSwitchFactory

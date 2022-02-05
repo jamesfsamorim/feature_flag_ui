@@ -3,7 +3,7 @@ import UserOtherSettingsPanel from "./panels/UserOtherSettings.panel";
 import UserSettingsPanel from "./panels/UserSettings.panel";
 import AlertsPanel from "./panels/Alerts.panel";
 import React from "react";
-import FeatureFlagGrid from "./FeatureFlag.styled";
+import {FeatureFlagGrid} from "./FeatureFlag.styled";
 import api from "../../config/axios/api";
 
 interface FeatureFlagProps {
@@ -17,8 +17,8 @@ const FeatureFlag = ({generalStatus}: FeatureFlagProps) => {
         <FeatureFlagGrid container>
             <GeneralPanel checked={generalStatus}/>
             <UserOtherSettingsPanel />
-            {/*<UserSettingsPanel />*/}
-            {/*<AlertsPanel />*/}
+            <UserSettingsPanel />
+            <AlertsPanel />
         </FeatureFlagGrid>
     )
 }
