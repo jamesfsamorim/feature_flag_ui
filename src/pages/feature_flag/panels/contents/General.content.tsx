@@ -1,3 +1,5 @@
+import {GeneralPanelChecked, GeneralPanelProps} from "../General.panel";
+
 export const generalContent = [
     {
         title: "feature_flag.panels.general.case_management",
@@ -42,3 +44,16 @@ export const generalContent = [
         }
     }
 ]
+
+const emptyGeneralChecked: GeneralPanelChecked = {
+    case_management: false,
+    map_timeline: false,
+    mass_communications: false,
+    notifications: false,
+    traffic_cameras: false,
+    views_briefings: false,
+}
+
+export const emptyGeneralStatus: GeneralPanelProps = {
+    checked: emptyGeneralChecked
+}

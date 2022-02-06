@@ -1,9 +1,11 @@
+import {UserSettingsPanelChecked, UserSettingsPanelOptionValue, UserSettingsPanelProps} from "../UserSettings.panel";
+
 export const userSettingsContent = [
     {
         title: "feature_flag.panels.user_settings.audit_log",
         type: 'standard',
         switchProps: {
-            name: "other_user_audit_log"
+            name: "audit_log"
         }
     },
     {
@@ -58,3 +60,24 @@ export const userSettingsContent = [
         }
     },
 ]
+
+const emptyUserSettingsChecked: UserSettingsPanelChecked = {
+    audit_log: false,
+    users: {
+        user_add: false,
+        user_update: false,
+        user_delete: false,
+        user_max_users: false,
+    }
+}
+
+const emptyUserSettingsOptionValue: UserSettingsPanelOptionValue = {
+    users: {
+        user_max_users: 15
+    }
+}
+
+export const emptyUserSettingsStatus: UserSettingsPanelProps = {
+    checked: emptyUserSettingsChecked,
+    optionValue: emptyUserSettingsOptionValue
+}

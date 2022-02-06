@@ -2,16 +2,14 @@ import {ListItem, Switch} from "@mui/material";
 import React, {ChangeEvent} from "react";
 import {useTranslation} from "react-i18next";
 import {Title} from './Switch.styled'
+import {ListItemProps, SwitchProps} from "../../../factories/ListItemSwitch.factory";
 
-export interface SwitchProps {
-    name: string
-    onChange(event: ChangeEvent<HTMLInputElement>, checked: boolean): void
+interface StandardProps extends SwitchProps{
     checked: boolean
 }
 
-export interface StandardSwitchProps {
-    title: string
-    switchProps: SwitchProps
+export interface StandardSwitchProps extends ListItemProps{
+    switchProps: StandardProps
 }
 
 const StandardSwitch = ({title, switchProps: {onChange, checked, name}}: StandardSwitchProps) => {

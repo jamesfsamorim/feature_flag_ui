@@ -1,9 +1,11 @@
+import {AlertsPanelChecked, AlertsPanelOptionValue, AlertsPanelProps} from "../Alerts.panel";
+
 export const alertsContent = [
     {
         title: "feature_flag.panels.alerts.alert_manager",
         type: 'standard',
         switchProps: {
-            name: "user_delete"
+            name: "alert_manager"
         }
     },
     {
@@ -28,3 +30,17 @@ export const alertsContent = [
         }
     },
 ]
+
+const emptyAlertsChecked: AlertsPanelChecked = {
+    alert_manager: false,
+    alert_rules: false,
+}
+
+const emptyAlertsOptionValue: AlertsPanelOptionValue = {
+    alert_rules: 10
+}
+
+export const emptyAlertsStatus: AlertsPanelProps = {
+    checked: emptyAlertsChecked,
+    optionValue: emptyAlertsOptionValue
+}
