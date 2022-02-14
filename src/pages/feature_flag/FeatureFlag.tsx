@@ -4,7 +4,7 @@ import UserSettingsPanel, {UserSettingsPanelProps} from "./panels/UserSettings.p
 import AlertsPanel, {AlertsPanelProps} from "./panels/Alerts.panel";
 import React from "react";
 import {FeatureFlagGrid} from "./FeatureFlag.styled";
-import api from "../../config/axios/api";
+import {Grid} from "@mui/material";
 
 interface FeatureFlagProps {
     generalStatus: GeneralPanelProps
@@ -26,13 +26,26 @@ export interface FeatureFlagRequest {
     body: RequestBody | RequestBodyWithValue
 }
 
+const featureFlagPanels = (
+    userOtherSettingsStatus: UserSettingsPanelProps,
+    userSettingsStatus: UserSettingsPanelProps,
+    alertsStatus: AlertsPanelProps
+) => [
+    <UserOtherSettingsPanel checked={userOtherSettingsStatus.checked}
+                            optionValue={userOtherSettingsStatus.optionValue}/>,
+    <UserSettingsPanel checked={userSettingsStatus.checked} optionValue={userSettingsStatus.optionValue}/>,
+    <AlertsPanel checked={alertsStatus.checked} optionValue={alertsStatus.optionValue}/>
+]
+
 const FeatureFlag = ({generalStatus, userOtherSettingsStatus, userSettingsStatus, alertsStatus}: FeatureFlagProps) =>
-    <FeatureFlagGrid container>
+    <FeatureFlagGrid container spacing={2}>
         <GeneralPanel checked={generalStatus.checked}/>
-        <UserOtherSettingsPanel checked={userOtherSettingsStatus.checked}
-                                optionValue={userOtherSettingsStatus.optionValue}/>
-        <UserSettingsPanel checked={userSettingsStatus.checked} optionValue={userSettingsStatus.optionValue}/>
-        <AlertsPanel checked={alertsStatus.checked} optionValue={alertsStatus.optionValue}/>
+
+        {featureFlagPanels(userOtherSettingsStatus, userSettingsStatus, alertsStatus).map( (panel, index) =>
+            <Grid item xs={12} sm={6} md={4} align-items="center" key={`panel-${index}`}>
+                {panel}
+            </Grid>
+        )}
     </FeatureFlagGrid>
 
 export default FeatureFlag

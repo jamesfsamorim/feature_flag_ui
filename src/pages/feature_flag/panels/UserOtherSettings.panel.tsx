@@ -50,7 +50,7 @@ const UserOtherSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, opti
     }
 
     return (
-        <Grid item md={3.88} align-items="center">
+        <>
             <FeatureFlagTitle>
                 <h5>{t('feature_flag.panels.user_settings.title')}</h5>
             </FeatureFlagTitle>
@@ -70,7 +70,7 @@ const UserOtherSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, opti
                     </FeatureFlagPaper>
                 )}
             </FeatureFlagList>
-        </Grid>
+        </>
     )
 }
 

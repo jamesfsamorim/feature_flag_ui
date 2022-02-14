@@ -15,7 +15,7 @@ export const FeatureFlagTitle = styled.div`
 
 export const FeatureFlagGrid = styled(Grid)`
   padding: ${({theme}) => theme.paddings.default};
-  gap: 15px;
+  padding-top: 50px;
 `
 
 export const FeatureFlagPaper = styled.div`
@@ -23,4 +23,13 @@ export const FeatureFlagPaper = styled.div`
   margin-left: ${({theme}) => theme.paddings.small};
   margin-right: ${({theme}) => theme.paddings.small};
   margin-bottom: ${({theme}) => theme.paddings.small};
+`
+
+export const GeneralPanelGrid = styled(Grid)`
+  padding-left: ${({theme}) => theme.paddings.default};
+`
+
+export const GeneralPanelTitle = styled(Grid)`
+  padding-left: ${({theme}) => theme.paddings.default};
+  padding-bottom: ${({theme}) => theme.paddings.default};
 `

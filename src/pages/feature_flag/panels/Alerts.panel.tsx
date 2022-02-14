@@ -65,7 +65,7 @@ const AlertsPanel: React.FC<AlertsPanelProps> = ({checked, optionValue}) => {
     }
 
     return (
-        <Grid item md={3.88} align-items="center">
+        <>
             <FeatureFlagTitle>
                 <h5>{t('feature_flag.panels.alerts.title')}</h5>
             </FeatureFlagTitle>
@@ -85,7 +85,7 @@ const AlertsPanel: React.FC<AlertsPanelProps> = ({checked, optionValue}) => {
                     </FeatureFlagPaper>
                 )}
             </FeatureFlagList>
-        </Grid>
+        </>
     )
 }
 

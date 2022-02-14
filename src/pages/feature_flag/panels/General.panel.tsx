@@ -3,11 +3,12 @@ import React, {ChangeEvent, useState} from "react";
 import {generalContent} from "./contents/General.content";
 import ListItemSwitchFactory, {ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
 import {useTranslation} from "react-i18next";
-import {FeatureFlagListAlternative} from "../FeatureFlag.styled";
+import {FeatureFlagListAlternative, GeneralPanelGrid, GeneralPanelTitle} from "../FeatureFlag.styled";
 import {FeatureFlagRequest} from "../FeatureFlag";
 
 export interface GeneralPanelChecked {
     [index: string]: boolean
+
     case_management: boolean
     map_timeline: boolean
     views_briefings: boolean
@@ -25,7 +26,7 @@ const GeneralPanel: React.FC<GeneralPanelProps> = ({checked}) => {
     const [generalState, setGeneralState] = useState(checked)
 
     const send = (request: FeatureFlagRequest): void => {
-        const { body, name} = request
+        const {body, name} = request
 
         console.log('url sended: ', `/${name}`)
         console.log('body: ', body)
@@ -49,10 +50,12 @@ const GeneralPanel: React.FC<GeneralPanelProps> = ({checked}) => {
 
     return (
         <>
-            <h5>{t('feature_flag.panels.general.title')}</h5>
-            <Grid container spacing={2} columns={{md: 12}}>
+            <GeneralPanelTitle>
+                <h5>{t('feature_flag.panels.general.title')}</h5>
+            </GeneralPanelTitle>
+            <GeneralPanelGrid container spacing={2}>
                 {generalContent.map((content, index) =>
-                    <Grid item md={4} key={`${content.switchProps.name}-${index}`}>
+                    <Grid item xs={12} sm={6} md={4} key={`${content.switchProps.name}-${index}`}>
                         <FeatureFlagListAlternative>
                             {ListItemSwitchFactory({
                                 ...content as ListItemSwitchProps,
@@ -65,7 +68,7 @@ const GeneralPanel: React.FC<GeneralPanelProps> = ({checked}) => {
                         </FeatureFlagListAlternative>
                     </Grid>
                 )}
-            </Grid>
+            </GeneralPanelGrid>
         </>
     )
 }

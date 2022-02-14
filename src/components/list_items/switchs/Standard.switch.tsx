@@ -1,5 +1,5 @@
 import {ListItem, Switch} from "@mui/material";
-import React, {ChangeEvent} from "react";
+import React from "react";
 import {useTranslation} from "react-i18next";
 import {Title} from './Switch.styled'
 import {ListItemProps, SwitchProps} from "../../../factories/ListItemSwitch.factory";
