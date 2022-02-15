@@ -61,8 +61,8 @@ const UserOtherSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, opti
                             ...content as ListItemSwitchProps,
                             switchProps: {
                                 ...content.switchProps as ExtraSwitchProps,
-                                checked: checked[content.switchProps.name],
-                                optionValue: optionValue[content.switchProps.name],
+                                checked: userOtherSettingsState[content.switchProps.name],
+                                optionValue: userOtherSettingsOptionValueState[content.switchProps.name],
                                 onChange,
                                 onSelectorChange,
                                 send
