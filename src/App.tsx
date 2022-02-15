@@ -1,7 +1,7 @@
 import React, {Suspense, useContext, useEffect, useState} from 'react';
 import FeatureFlag from "./pages/feature_flag/FeatureFlag";
 import {
-    FormControl,
+    FormControl, FormControlLabel,
     Radio,
     RadioGroup,
     Skeleton
@@ -13,7 +13,7 @@ import {
     DrawerDivider,
     DrawerPaper,
     FloatingButton,
-    FormControlLabelDrawer, IconTitle
+    IconTitle
 } from "./App.styled";
 import {emptyGeneralStatus} from "./pages/feature_flag/panels/contents/General.content";
 import {emptyUserSettingsStatus} from "./pages/feature_flag/panels/contents/UserSettings.content";
@@ -27,13 +27,14 @@ import Settings from '@mui/icons-material/Settings'
 import Translate from '@mui/icons-material/Translate'
 import Palette from '@mui/icons-material/Palette'
 import {useTranslation} from "react-i18next";
+import {ThemeContext, ThemeTypes} from "./contexts/theme/Theme.context";
 
 const HocFeatureFlag = withLoading(FeatureFlag)
 
 function App() {
     const [loading, setLoading] = useState(false)
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-    const [theme, setTheme] = useState('default')
+    const {switchTheme, themeType} = useContext(ThemeContext)
     const [language, setLanguage] = useState('en')
     const [generalStatus, setGeneralStatus] = useState(emptyGeneralStatus)
     const [userSettingsStatus, setUserSettingsStatus] = useState(emptyUserSettingsStatus)
@@ -80,12 +81,7 @@ function App() {
 
     const changeLanguage = (language: string) => {
         setLanguage(language)
-        //it's not working yet
         i18n.changeLanguage(language)
-    }
-
-    const changeTheme = () => {
-        //Code is here
     }
 
     return (
@@ -101,7 +97,7 @@ function App() {
                 >
                     <DrawerPaper>
                         <IconTitle>
-                            <Translate/> <h5>Languages</h5>
+                            <Translate/> <h5>{t('drawer.languages.title')}</h5>
                         </IconTitle>
                         <FormControl>
                             <RadioGroup
@@ -110,26 +106,31 @@ function App() {
                                 value={language}
                                 onChange={({target: {value}}) => changeLanguage(value)}
                             >
-                                <FormControlLabelDrawer value="en" control={<Radio size={'small'}/>} label="English"/>
-                                <FormControlLabelDrawer value="pt" control={<Radio size={'small'}/>} label="Portuguese"/>
+                                <FormControlLabel value="en" control={<Radio size={'small'}/>}
+                                                  label={t('drawer.languages.english') as string}/>
+                                <FormControlLabel value="pt" control={<Radio size={'small'}/>}
+                                                  label={t('drawer.languages.portuguese') as string}/>
                             </RadioGroup>
                         </FormControl>
 
                         <DrawerDivider/>
 
                         <IconTitle>
-                            <Palette/> <h5>Themes</h5>
+                            <Palette/> <h5>{t('drawer.themes.title')}</h5>
                         </IconTitle>
                         <FormControl>
                             <RadioGroup
                                 aria-labelledby="demo-controlled-radio-buttons-group"
                                 name="controlled-radio-buttons-group"
-                                value={theme}
-                                onChange={({target: {value}}) => setTheme(value)}
+                                value={themeType}
+                                onChange={({target: {value}}) => switchTheme(value as ThemeTypes)}
                             >
-                                <FormControlLabelDrawer value="default" control={<Radio/>} label="Default"/>
-                                <FormControlLabelDrawer value="light" control={<Radio/>} label="Light"/>
-                                <FormControlLabelDrawer value="blue" control={<Radio/>} label="Blue"/>
+                                <FormControlLabel value="default" control={<Radio/>}
+                                                  label={t('drawer.themes.default') as string}/>
+                                <FormControlLabel value="light" control={<Radio/>}
+                                                  label={t('drawer.themes.light') as string}/>
+                                <FormControlLabel value="blue" control={<Radio/>}
+                                                  label={t('drawer.themes.blue') as string}/>
                             </RadioGroup>
                         </FormControl>
                     </DrawerPaper>

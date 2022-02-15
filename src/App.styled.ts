@@ -39,7 +39,3 @@ export const IconTitle = styled.div`
   align-items: center;
   gap: 5px;
 `
-
-export const FormControlLabelDrawer = styled(FormControlLabel)`
-    
-`

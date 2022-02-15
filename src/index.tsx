@@ -3,19 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {I18nextProvider} from "react-i18next";
 import i18n from './config/i18n/I18n'
-import {ThemeProvider} from "styled-components";
-import defaultTheme from "./themes/Default.theme";
-import lightTheme from "./themes/Light.theme";
-import blueTheme from "./themes/Blue.theme";
-import GlobalStyle from "./themes/global"
+import {ThemeStoreProvider} from "./contexts/theme/Theme.context";
 
 ReactDOM.render(
     <React.StrictMode>
         <I18nextProvider i18n={i18n}>
-            <ThemeProvider theme={defaultTheme}>
+            <ThemeStoreProvider>
                 <App/>
-                <GlobalStyle />
-            </ThemeProvider>
+            </ThemeStoreProvider>
         </I18nextProvider>
     </React.StrictMode>,
     document.getElementById('root')

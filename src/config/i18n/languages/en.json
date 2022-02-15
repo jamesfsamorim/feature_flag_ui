@@ -1,4 +1,17 @@
 {
+  "drawer": {
+    "languages": {
+      "title": "languages",
+      "english": "english",
+      "portuguese": "portuguese"
+    },
+    "themes": {
+      "title": "themes",
+      "default": "default",
+      "light": "light",
+      "blue": "blue"
+    }
+  },
   "feature_flag": {
     "panels": {
       "general": {

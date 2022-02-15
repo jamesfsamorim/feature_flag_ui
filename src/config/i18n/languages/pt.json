@@ -1,4 +1,17 @@
 {
+  "drawer": {
+    "languages": {
+      "title": "Idiomas",
+      "english": "Inglês",
+      "portuguese": "português"
+    },
+    "themes": {
+      "title": "Temas",
+      "default": "padrão",
+      "light": "claro",
+      "blue": "azul"
+    }
+  },
   "feature_flag": {
     "panels": {
       "general": {
@@ -23,8 +36,8 @@
       },
       "alerts": {
         "title": "alertas",
-        "alert_manager": "alert manager",
-        "alert_rules": "alert rules"
+        "alert_manager": "gerenciador de alerta",
+        "alert_rules": "regras do alerta"
       }
     }
   }

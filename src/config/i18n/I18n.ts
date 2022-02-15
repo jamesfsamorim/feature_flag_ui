@@ -1,25 +1,22 @@
-import i18n from 'i18next';
+import i18n, {InitOptions} from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './languages/en.json'
 import pt from './languages/pt.json'
 
-export const defaultNS = 'en'
 export const resources = {
-    en: {en},
-    pt: {pt},
+    en: {translation: en},
+    pt: {translation: pt},
 } as const;
 
-i18n.use(initReactI18next).init({
+const options: InitOptions = {
     lng: 'en',
-    fallbackLng: 'en',
-    defaultNS,
     resources,
+    debug: true,
     interpolation: {
         escapeValue: false,
     },
-    react: {
-        useSuspense: true,
-    },
-});
+}
+
+i18n.use(initReactI18next).init(options);
 
 export default i18n

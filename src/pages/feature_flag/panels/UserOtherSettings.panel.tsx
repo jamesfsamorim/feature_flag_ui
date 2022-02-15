@@ -64,7 +64,8 @@ const UserOtherSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, opti
                                 checked: checked[content.switchProps.name],
                                 optionValue: optionValue[content.switchProps.name],
                                 onChange,
-                                onSelectorChange
+                                onSelectorChange,
+                                send
                             }
                         })}
                     </FeatureFlagPaper>
