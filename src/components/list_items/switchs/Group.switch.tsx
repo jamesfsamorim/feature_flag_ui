@@ -56,7 +56,7 @@ const GroupSwitch = ({title, switchProps: {name, checked, send, children, option
                 ...prevState,
                 [item.switchProps.name]: false
             }))
-            send({name: item.switchProps.name, body: {active: true}})
+            send({name: item.switchProps.name, body: {active: false}})
         })
     }
 
