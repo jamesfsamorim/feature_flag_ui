@@ -26,4 +26,4 @@ const mockUserOtherSettingsStatus: UserSettingsPanelProps = {
 }
 
 export const getMockUserOtherSettingsContent = async (): Promise<UserSettingsPanelProps> => {
-    return new Promise(() => setTimeout(() => mockUserOtherSettingsStatus, 2200))}
+    return new Promise((resolve) => setTimeout(() => resolve(mockUserOtherSettingsStatus), 100))}

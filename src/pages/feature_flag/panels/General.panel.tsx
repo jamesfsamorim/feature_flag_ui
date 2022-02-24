@@ -1,10 +1,11 @@
 import {Grid} from "@mui/material";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useContext, useState} from "react";
 import {generalContent} from "./contents/General.content";
 import ListItemSwitchFactory, {ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
 import {useTranslation} from "react-i18next";
 import {FeatureFlagListAlternative, GeneralPanelGrid, GeneralPanelTitle} from "../FeatureFlag.styled";
 import {FeatureFlagRequest} from "../FeatureFlag";
+import {ResponseHandlerContext} from "../../../contexts/response_handler/ResponseHandler.context";
 
 export interface GeneralPanelChecked {
     [index: string]: boolean
@@ -24,6 +25,7 @@ export interface GeneralPanelProps {
 const GeneralPanel: React.FC<GeneralPanelProps> = ({checked}) => {
     const {t} = useTranslation()
     const [generalState, setGeneralState] = useState(checked)
+    const {setSuccessMessage} = useContext(ResponseHandlerContext)
 
     const send = (request: FeatureFlagRequest): void => {
         const {body, name} = request
@@ -31,6 +33,13 @@ const GeneralPanel: React.FC<GeneralPanelProps> = ({checked}) => {
         console.log('url sended: ', `/${name}`)
         console.log('body: ', body)
         // api.put(`/${param}`, body)
+
+        const status = body.active ? "common.flag.activate" : "common.flag.deactivate"
+        setSuccessMessage(
+            t(`feature_flag.panels.general.${name}`),
+            t('common.messages.success'),
+            `${t('common.status')} ${t(status)}`
+        )
     }
 
     const onChange = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {

@@ -1,23 +1,39 @@
-import { Grid } from "@mui/material";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useContext, useState} from "react";
 import {useTranslation} from "react-i18next";
 import ListItemSwitchFactory, {ExtraSwitchProps, ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
 import {FeatureFlagList, FeatureFlagPaper, FeatureFlagTitle} from "../FeatureFlag.styled";
 import {userSettingsContent} from "./contents/UserSettings.content";
 import {UserSettingsPanelProps} from "./UserSettings.panel";
 import {FeatureFlagRequest} from "../FeatureFlag";
+import {ResponseHandlerContext} from "../../../contexts/response_handler/ResponseHandler.context";
 
 const UserOtherSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, optionValue}) => {
     const {t} = useTranslation()
     const [userOtherSettingsState, setUserOtherSettingsState] = useState(checked)
     const [userOtherSettingsOptionValueState, setUserOtherSettingsOptionValueState] = useState(optionValue)
+    const {setSuccessMessage} = useContext(ResponseHandlerContext)
 
     const send = (request: FeatureFlagRequest): void => {
-        const { body, name} = request
+        const {body, name} = request
 
         console.log('url sended: ', `/user/other/settings/${name}`)
         console.log('body: ', body)
         // api.put(`/user/other/settings/${param}`, body)
+
+        const [, attribute] = name.split('user_')
+        const status = body.active ? "common.flag.activate" : "common.flag.deactivate"
+
+        name.includes('user_')
+            ? setSuccessMessage(
+                t(`feature_flag.panels.user_settings.users.${attribute}`),
+                t('common.messages.success'),
+                `${t('common.status')} ${t(status)}`
+            )
+            : setSuccessMessage(
+                t(`feature_flag.panels.user_settings.${name}`),
+                t('common.messages.success'),
+                `${t('common.status')} ${t(status)}`
+            )
     }
 
     const onChange = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
@@ -44,7 +60,7 @@ const UserOtherSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, opti
         const value = typeof currentValue !== "undefined" ? currentValue : null
 
         const body = active && value ? {active, value} : {active}
-        const request: FeatureFlagRequest = { name, body }
+        const request: FeatureFlagRequest = {name, body}
 
         send(request)
     }

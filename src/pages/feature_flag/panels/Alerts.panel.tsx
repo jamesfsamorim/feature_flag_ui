@@ -1,10 +1,10 @@
-import { Grid } from "@mui/material";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useContext, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {FeatureFlagList, FeatureFlagPaper, FeatureFlagTitle} from "../FeatureFlag.styled";
 import ListItemSwitchFactory, {ExtraSwitchProps, ListItemSwitchProps} from "../../../factories/ListItemSwitch.factory";
 import {alertsContent} from "./contents/Alerts.content";
 import {FeatureFlagRequest} from "../FeatureFlag";
+import {ResponseHandlerContext} from "../../../contexts/response_handler/ResponseHandler.context";
 
 export interface AlertsPanelChecked {
     [index: string]: boolean
@@ -26,6 +26,7 @@ const AlertsPanel: React.FC<AlertsPanelProps> = ({checked, optionValue}) => {
     const {t} = useTranslation()
     const [alertsState, setAlertsState] = useState(checked)
     const [alertsOptionValueState, setAlertsOptionValueState] = useState(optionValue)
+    const {setSuccessMessage} = useContext(ResponseHandlerContext)
 
     const send = (request: FeatureFlagRequest): void => {
         const { body, name} = request
@@ -33,6 +34,13 @@ const AlertsPanel: React.FC<AlertsPanelProps> = ({checked, optionValue}) => {
         console.log('url sended: ', `/${name}`)
         console.log('body: ', body)
         // api.put(`/${param}`, body)
+
+        const status = body.active ? "common.flag.activate" : "common.flag.deactivate"
+        setSuccessMessage(
+            t(`feature_flag.panels.alerts.${name}`),
+            t('common.messages.success'),
+            `${t('common.status')} ${t(status)}`
+        )
     }
 
     const onChange = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {

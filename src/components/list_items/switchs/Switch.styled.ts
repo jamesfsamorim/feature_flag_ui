@@ -29,9 +29,4 @@ export const Selector = styled(Select)`
   .MuiOutlinedInput-notchedOutline {
     border-color: ${({theme}) => theme.colors.text};
   }
-
-  //Arrumar hover no select
-  // .MuiOutlinedInput-root:hover {
-  //   border-color: ${({theme}) => theme.colors.text};
-  // }
 `

@@ -4,12 +4,15 @@ import App from './App';
 import {I18nextProvider} from "react-i18next";
 import i18n from './config/i18n/I18n'
 import {ThemeStoreProvider} from "./contexts/theme/Theme.context";
+import {ResponseHandlerProvider} from "./contexts/response_handler/ResponseHandler.context";
 
 ReactDOM.render(
     <React.StrictMode>
         <I18nextProvider i18n={i18n}>
             <ThemeStoreProvider>
-                <App/>
+                <ResponseHandlerProvider>
+                    <App/>
+                </ResponseHandlerProvider>
             </ThemeStoreProvider>
         </I18nextProvider>
     </React.StrictMode>,

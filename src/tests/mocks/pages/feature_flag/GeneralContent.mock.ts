@@ -14,5 +14,5 @@ const mockGeneralStatus: GeneralPanelProps = {
 }
 
 export const getMockGeneralContent = async (): Promise<GeneralPanelProps> => {
-    return new Promise(() => setTimeout(() => mockGeneralStatus, 1000))
+    return new Promise((resolve) => setTimeout(() => resolve(mockGeneralStatus), 1000))
 }

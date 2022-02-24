@@ -40,5 +40,18 @@
         "alert_rules": "alert rules"
       }
     }
+  },
+  "common": {
+    "status": "Status:",
+    "messages": {
+      "success": "It has been saved successfully! :D",
+      "info": "This is a important info!",
+      "error": "It has not been saved! :(",
+      "warning": "We have some issues that need to be resolved: "
+    },
+    "flag": {
+      "activate": "Activate",
+      "deactivate": "Deactivate"
+    }
   }
 }

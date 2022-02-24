@@ -68,7 +68,8 @@ const GroupSwitch = ({title, switchProps: {name, checked, send, children, option
         }))
 
         childrenOptionValueState
-            ? dispatchSend(name, checked, childrenOptionValueState[name]) : dispatchSend(name, checked)
+            ? dispatchSend(name, checked, childrenOptionValueState[name])
+            : dispatchSend(name, checked)
     }
 
     const onChildrenSelectorChange = (event: ChangeEvent<HTMLInputElement> | (Event & { target: { value: any; name: string } }), child: React.ReactNode): void => {

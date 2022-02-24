@@ -1,5 +1,4 @@
-import {Grid} from "@mui/material";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useContext, useState} from "react";
 import {FeatureFlagList, FeatureFlagPaper, FeatureFlagTitle} from "../FeatureFlag.styled";
 import ListItemSwitchFactory, {
     ExtraSwitchProps,
@@ -9,6 +8,7 @@ import ListItemSwitchFactory, {
 import {useTranslation} from "react-i18next";
 import {userSettingsContent} from "./contents/UserSettings.content";
 import {FeatureFlagRequest} from "../FeatureFlag";
+import {ResponseHandlerContext} from "../../../contexts/response_handler/ResponseHandler.context";
 
 interface UsersGroupChecked {
     [index: string]: boolean
@@ -44,6 +44,7 @@ const UserSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, optionVal
     const {t} = useTranslation()
     const [userSettingsState, setUserSettingsState] = useState(checked)
     const [userSettingsOptionValueState, setUserSettingsOptionValueState] = useState(optionValue)
+    const {setSuccessMessage} = useContext(ResponseHandlerContext)
 
     const send = (request: FeatureFlagRequest): void => {
         const {body, name} = request
@@ -51,6 +52,21 @@ const UserSettingsPanel: React.FC<UserSettingsPanelProps> = ({checked, optionVal
         console.log('url sended: ', `/user/settings/${name}`)
         console.log('body: ', body)
         // api.put(`/user/settings/${param}`, body)
+
+        const [, attribute] = name.split('user_')
+        const status = body.active ? "common.flag.activate" : "common.flag.deactivate"
+
+        name.includes('user_')
+            ? setSuccessMessage(
+                t(`feature_flag.panels.user_settings.users.${attribute}`),
+                t('common.messages.success'),
+                `${t('common.status')} ${t(status)}`
+            )
+            : setSuccessMessage(
+                t(`feature_flag.panels.user_settings.${name}`),
+                t('common.messages.success'),
+                `${t('common.status')} ${t(status)}`
+            )
     }
 
     const onChange = (event: ChangeEvent<HTMLInputElement>, checked: boolean): void => {

@@ -19,4 +19,4 @@ const mockAlertsStatus: AlertsPanelProps = {
 }
 
 export const getMockAlertsContent = async (): Promise<AlertsPanelProps> => {
-    return new Promise(() => setTimeout(() => mockAlertsStatus, 1000))}
+    return new Promise((resolve) => setTimeout(() => resolve(mockAlertsStatus), 1000))}

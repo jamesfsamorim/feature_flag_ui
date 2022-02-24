@@ -40,5 +40,18 @@
         "alert_rules": "regras do alerta"
       }
     }
+  },
+  "common": {
+    "status": "Status:",
+    "messages": {
+      "success": "Foi salvo com sucesso! :D",
+      "info": "Isto é uma informação importante!",
+      "error": "Não foi salvo! :(",
+      "warning": "Nós temos problemas a serem resolvidos: "
+    },
+    "flag": {
+      "activate": "Ativado",
+      "deactivate": "Desativado"
+    }
   }
 }
