@@ -11,7 +11,7 @@ export const resources = {
 const options: InitOptions = {
     lng: 'en',
     resources,
-    debug: true,
+    debug: false,
     interpolation: {
         escapeValue: false,
     },

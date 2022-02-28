@@ -3,7 +3,6 @@ import {
     AccordionDetails,
     AccordionSummary,
     List,
-    Switch
 } from "@mui/material";
 import {useTranslation} from "react-i18next";
 import ListItemSwitchFactory, {
@@ -12,8 +11,9 @@ import ListItemSwitchFactory, {
     ListItemSwitchProps, OptionValues,
     SwitchProps
 } from "../../../factories/ListItemSwitch.factory";
-import {AccordionSwitch, ExpandMoreIcon, Title} from './Switch.styled'
+import {AccordionSwitch, ExpandMoreIcon} from './Switch.styled'
 import {FeatureFlagRequest} from "../../../pages/feature_flag/FeatureFlag";
+import StandardSwitch from "./Standard.switch";
 
 export interface ChildrenGroupSwitchProps extends SwitchProps {
     children: ListItemSwitchProps[]
@@ -28,7 +28,6 @@ export interface GroupSwitchProps extends ListItemProps {
 }
 
 const GroupSwitch = ({title, switchProps: {name, checked, send, children, optionValue}}: GroupSwitchProps) => {
-    const {t} = useTranslation()
     const [expanded, setExpanded] = useState<string | boolean>(false);
     const [isCheck, setIsCheck] = useState(false)
     const [childrenCheckedState, setChildrenCheckedState] = useState(checked)
@@ -72,7 +71,7 @@ const GroupSwitch = ({title, switchProps: {name, checked, send, children, option
             : dispatchSend(name, checked)
     }
 
-    const onChildrenSelectorChange = (event: ChangeEvent<HTMLInputElement> | (Event & { target: { value: any; name: string } }), child: React.ReactNode): void => {
+    const onChildrenSelectorChange = (event: ChangeEvent<HTMLInputElement> | (Event & { target: { value: any; name: string } })): void => {
         const {name, value} = event.target
         setChildrenOptionValueState((prevState) => ({
             ...prevState,
@@ -98,10 +97,7 @@ const GroupSwitch = ({title, switchProps: {name, checked, send, children, option
                 aria-controls="panelbh-content"
                 id="panelbh-header"
             >
-                <Title>
-                    <h6>{t(title)}</h6>
-                </Title>
-                <Switch edge="end" onChange={onSwitchChange} checked={isCheck} name={name}/>
+                <StandardSwitch switchProps={{name, checked: isCheck, onChange: onSwitchChange}} title={title}/>
             </AccordionSummary>
             <AccordionDetails>
                 <List>

@@ -10,9 +10,10 @@ interface StandardProps extends SwitchProps{
 
 export interface StandardSwitchProps extends ListItemProps{
     switchProps: StandardProps
+    children?: React.ReactNode
 }
 
-const StandardSwitch = ({title, switchProps: {onChange, checked, name}}: StandardSwitchProps) => {
+const StandardSwitch = ({children, title, switchProps: {onChange, checked, name}}: StandardSwitchProps) => {
     const {t} = useTranslation()
 
     return (
@@ -20,6 +21,7 @@ const StandardSwitch = ({title, switchProps: {onChange, checked, name}}: Standar
             <Title>
                 <h6>{t(title)}</h6>
             </Title>
+            {children}
 
             <Switch edge="end" onChange={onChange} checked={checked} name={name}/>
         </ListItem>
